@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 var (
@@ -55,10 +56,11 @@ func TestAddGetDelete(t *testing.T) {
 
 	p, err := store.Get(id)
 	require.NoError(t, err)
-	require.Equal(t, p.Client, parcel.Client)
-	require.Equal(t, p.Status, parcel.Status)
-	require.Equal(t, p.Address, parcel.Address)
-	require.Equal(t, p.CreatedAt, parcel.CreatedAt)
+	assert.Equal(t, p.Number, id)
+	assert.Equal(t, p.Client, parcel.Client)
+	assert.Equal(t, p.Status, parcel.Status)
+	assert.Equal(t, p.Address, parcel.Address)
+	assert.Equal(t, p.CreatedAt, parcel.CreatedAt)
 
 	err = store.Delete(id)
 	require.NoError(t, err)
