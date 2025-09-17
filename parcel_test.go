@@ -177,9 +177,9 @@ func TestGetByClient(t *testing.T) {
 
 	storedParcels, err := store.GetByClient(client) // получите список посылок по идентификатору клиента, сохранённого в переменной client
 	require.NoError(t, err)
-	require.Len(t, storedParcels, len(parcels))
+	assert.Len(t, storedParcels, len(parcels))
 	for _, parcel := range storedParcels {
-		require.Contains(t, parcelMap, parcel.Number)
-		require.Equal(t, parcel, parcelMap[parcel.Number])
+		assert.Contains(t, parcelMap, parcel.Number)
+		assert.Equal(t, parcel, parcelMap[parcel.Number])
 	}
 }
