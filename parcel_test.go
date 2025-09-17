@@ -31,6 +31,7 @@ func getTestParcel() Parcel {
 // TestAddGetDelete проверяет добавление, получение и удаление посылки
 func TestAddGetDelete(t *testing.T) {
 	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")
+	defer db.Close()
 	createTableSQL := `
 	CREATE TABLE IF NOT EXISTS "parcel"
 	(
@@ -67,6 +68,7 @@ func TestAddGetDelete(t *testing.T) {
 // TestSetAddress проверяет обновление адреса
 func TestSetAddress(t *testing.T) {
 	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")// настройте подключение к БД
+	defer db.Close()
 	createTableSQL := `
 	CREATE TABLE IF NOT EXISTS "parcel"
 	(
@@ -99,6 +101,7 @@ func TestSetAddress(t *testing.T) {
 // TestSetStatus проверяет обновление статуса
 func TestSetStatus(t *testing.T) {
 	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")// настройте подключение к БД
+	defer db.Close()
 	createTableSQL := `
 	CREATE TABLE IF NOT EXISTS "parcel"
 	(
@@ -130,6 +133,7 @@ func TestSetStatus(t *testing.T) {
 // TestGetByClient проверяет получение посылок по идентификатору клиента
 func TestGetByClient(t *testing.T) {
 	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")// настройте подключение к БД
+	defer db.Close()
 	createTableSQL := `
 	CREATE TABLE IF NOT EXISTS "parcel"
 	(
