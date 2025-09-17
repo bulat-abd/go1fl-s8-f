@@ -11,11 +11,7 @@ import (
 )
 
 var (
-	// randSource источник псевдо случайных чисел.
-	// Для повышения уникальности в качестве seed
-	// используется текущее время в unix формате (в виде числа)
 	randSource = rand.NewSource(time.Now().UnixNano())
-	// randRange использует randSource для генерации случайных чисел
 	randRange = rand.New(randSource)
 )
 
@@ -70,7 +66,7 @@ func TestAddGetDelete(t *testing.T) {
 
 // TestSetAddress проверяет обновление адреса
 func TestSetAddress(t *testing.T) {
-	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")// настройте подключение к БД
+	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")
 	require.NoError(t, err)
 	defer db.Close()
 	createTableSQL := `
@@ -104,7 +100,7 @@ func TestSetAddress(t *testing.T) {
 
 // TestSetStatus проверяет обновление статуса
 func TestSetStatus(t *testing.T) {
-	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")// настройте подключение к БД
+	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")
 	require.NoError(t, err)
 	defer db.Close()
 	createTableSQL := `
@@ -137,7 +133,7 @@ func TestSetStatus(t *testing.T) {
 
 // TestGetByClient проверяет получение посылок по идентификатору клиента
 func TestGetByClient(t *testing.T) {
-	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")// настройте подключение к БД
+	db, err := sql.Open("sqlite", "file:test.db?mode=memory&cache=shared")
 	require.NoError(t, err)
 	defer db.Close()
 	createTableSQL := `
@@ -175,7 +171,7 @@ func TestGetByClient(t *testing.T) {
 		parcelMap[id] = parcels[i]
 	}
 
-	storedParcels, err := store.GetByClient(client) // получите список посылок по идентификатору клиента, сохранённого в переменной client
+	storedParcels, err := store.GetByClient(client)
 	require.NoError(t, err)
 	assert.Len(t, storedParcels, len(parcels))
 	for _, parcel := range storedParcels {
